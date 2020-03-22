@@ -1,0 +1,86 @@
+{
+    "paper_id":"str",
+    "metadata":{
+       "title":"str",
+       "authors":[
+          {
+             "first":"str",
+             "middle":"list of str",
+             "last":"str",
+             "suffix":"str",
+             "affiliation":"dict",
+             "email":"str"
+          },
+          "..."
+       ],
+       "abstract":[
+          {
+             "text":"str",
+             "cite_spans":[
+                {
+                   "start":151,
+                   "end":154,
+                   "text":"[7]",
+                   "ref_id":"BIBREF3"
+                },
+                "..."
+             ],
+             "ref_spans":"list of dicts similar to cite_spans",
+             "section":"Abstract"
+          },
+          "..."
+       ],
+       "body_text":[
+          {
+             "text":"str",
+             "cite_spans":[
+ 
+             ],
+             "ref_spans":[
+ 
+             ],
+             "eq_spans":[
+ 
+             ],
+             "section":"Introduction"
+          },
+          {
+             "section":"Conclusion"
+          }
+       ],
+       "bib_entries":{
+          "BIBREF0":{
+             "ref_id":"str",
+             "title":"str",
+             "authors":"list of dict",
+             "year":"int",
+             "venue":"str",
+             "volume":"str",
+             "issn":"str",
+             "pages":"str",
+             "other_ids":{
+                "DOI":[
+                   "str"
+                ]
+             }
+          },
+          "BIBREF1":{
+ 
+          },
+          "BIBREF25":{
+ 
+          }
+       },
+       "ref_entries":{
+          "FIGREF0":{
+             "text":"str",
+             "type":"figure"
+          },
+          "TABREF13":{
+             "text":"str",
+             "type":"table"
+          }
+       },
+       "back_matter":"list of dict"
+    }
+ }

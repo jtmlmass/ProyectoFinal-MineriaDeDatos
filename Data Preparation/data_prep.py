@@ -4,11 +4,11 @@ from nltk.tokenize import word_tokenize
 import re
 import nltk
 
-# We need this dataset in order to use the tokenizer
-nltk.download('punkt')
+# # We need this dataset in order to use the tokenizer
+# nltk.download('punkt')
 
-# Also download the list of stopwords to filter out
-nltk.download('stopwords')
+# # Also download the list of stopwords to filter out
+# nltk.download('stopwords')
 
 stemmer = PorterStemmer()
 
@@ -29,10 +29,3 @@ def process_text(text):
 
     # Remember, this final output is a list of words
     return clean_text
-
-
-texto = "Coronavirus disease (COVID-19) is an infectious disease caused by a new virus."
-
-
-texto_procesado = process_text(texto)
-print(texto_procesado)

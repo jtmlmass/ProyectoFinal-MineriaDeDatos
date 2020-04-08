@@ -3,6 +3,13 @@ import os
 import json
 from data_loading import DataLoader, save_file, delete_content
 import config
+import nltk
+
+# # We need this dataset in order to use the tokenizer
+nltk.download('punkt')
+
+# # Also download the list of stopwords to filter out
+nltk.download('stopwords')
 
 print("Starting Preprocesing")
 data_loader = DataLoader().get_instance()
@@ -21,11 +28,11 @@ for paper_json in files:
     # Convert all the sentences in a list of STR sentences
     abstract = []
     for sentence in paper_json["abstract"]:
-        abstract.append(" ".join(dp.process_text(sentence["text"])))
+        abstract.append(dp.process_text(sentence["text"]))
 
     body_text = []
     for sentence in paper_json["body_text"]:
-        body_text.append(" ".join(dp.process_text(sentence["text"])))
+        body_text.append(dp.process_text(sentence["text"]))
 
     # Re asssign the values after formating
     prep_paper['paper_id'] = paper_json['paper_id']

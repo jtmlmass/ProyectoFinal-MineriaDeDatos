@@ -1,2 +1,3 @@
 /noncomm_use_subset/*.json
 /preprocessed_papers/*.json
+config.py

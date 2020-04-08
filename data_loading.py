@@ -1,5 +1,5 @@
 import config
-from os import makedirs, path, listdir
+from os import makedirs, path, listdir, remove
 import json
 
 
@@ -18,42 +18,49 @@ def load_file(ruta_directorio, nombre_archivo):
     return archivoCargado
 
 
-class data_loader:
+def delete_content(ruta_directorio):
+    print("Deleting content from: " + ruta_directorio)
+    filelist = [f for f in listdir(ruta_directorio) if f.endswith(".json")]
+    for f in filelist:
+        remove(path.join(ruta_directorio, f))
+
+
+class DataLoader:
     __instance = None
 
     def get_instance(self):
-        if data_loader.__instance == None:
-            data_loader()
-        return data_loader.__instance
+        if DataLoader.__instance == None:
+            DataLoader()
+        return DataLoader.__instance
 
     def __init__(self):
         super().__init__()
 
-        if data_loader.__instance != None:
+        if DataLoader.__instance != None:
             raise Exception("This class has already been accessed")
         else:
-            data_loader.__instance = self
+            DataLoader.__instance = self
 
         if not path.exists(config.root_results_prep):
             makedirs(config.root_results_prep)
 
-        files = sorted(
+        self.files = sorted(
             list(listdir(config.root_path[:len(config.root_path) - 1])))
 
-    def get_crude_papers(self):
+    def get_original_papers(self):
         papers = []
-        count = 1
+        print("Loading original Papers...")
         for file in self.files:
-            print(count)
             paper = load_file(config.root_path, file)
             papers.append(json.load(paper))
+        print("Finished Loading")
         return papers
 
     def get_processed_papers(self):
         papers = []
-        count = 1
+        print("Loading processed Papers...")
         for file in self.files:
-            print(count)
             paper = load_file(config.root_results_prep, file)
             papers.append(json.load(paper))
+        print("Finished Loading")
         return papers

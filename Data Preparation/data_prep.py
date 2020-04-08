@@ -24,7 +24,7 @@ def process_text(text):
     # Remove the stopwords and stem each word to its root
     clean_text = [
         stemmer.stem(word) for word in tokenized_text
-        if word not in stopwords.words('english')
+        if (word not in stopwords.words('english') and (len(word)) > 2)
     ]
 
     # Remember, this final output is a list of words

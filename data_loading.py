@@ -23,6 +23,7 @@ def delete_content(ruta_directorio):
     filelist = [f for f in listdir(ruta_directorio) if f.endswith(".json")]
     for f in filelist:
         remove(path.join(ruta_directorio, f))
+    print("Deleted content from: " + ruta_directorio)
 
 
 class DataLoader:

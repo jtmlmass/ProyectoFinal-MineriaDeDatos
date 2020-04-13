@@ -5,10 +5,10 @@ import re
 import nltk
 
 # # We need this dataset in order to use the tokenizer
-# nltk.download('punkt')
+nltk.download('punkt')
 
 # # Also download the list of stopwords to filter out
-# nltk.download('stopwords')
+nltk.download('stopwords')
 
 stemmer = PorterStemmer()
 

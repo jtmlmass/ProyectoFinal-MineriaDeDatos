@@ -83,18 +83,23 @@ def loadModel(is_display=False, number_words=1):
 # format_total_time = time.strftime('%H:%M:%S', time.gmtime(total_time))
 # print("Total Topic Modeling time: " + str(format_total_time) + " seconds")
 
+def load_model():
+    # Code to load the pass model
+    start = time.time()
+    local_time_start = time.ctime(start)
+    print("Starting Loading at " + str(local_time_start))
+    number_words = 1
+    print(" - Number of words for topics loaded is: " + str(number_words))
+    topics = loadModel(is_display=False, number_words=number_words)
+    end = time.time()
+    total_time = end - start
+    local_time_end = time.ctime(end)
+    print("Finished Loading Model at " + str(local_time_end))
+    format_total_time = time.strftime('%H:%M:%S', time.gmtime(total_time))
+    print("Total Topic Modeling Loading time: " +
+          str(format_total_time) + " seconds")
 
-# Code to load the pass model
-start = time.time()
-local_time_start = time.ctime(start)
-print("Starting Loading at " + str(local_time_start))
-number_words = 1
-print(" - Number of words for topics loaded is: " + str(number_words))
-loadModel(is_display=False, number_words=number_words)
-end = time.time()
-total_time = end - start
-local_time_end = time.ctime(end)
-print("Finished Loading Model at " + str(local_time_end))
-format_total_time = time.strftime('%H:%M:%S', time.gmtime(total_time))
-print("Total Topic Modeling Loading time: " +
-      str(format_total_time) + " seconds")
+    return topics
+
+
+load_model()

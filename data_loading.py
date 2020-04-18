@@ -27,20 +27,8 @@ def delete_content(ruta_directorio):
 
 
 class DataLoader:
-    __instance = None
-
-    def get_instance(self):
-        if DataLoader.__instance == None:
-            DataLoader()
-        return DataLoader.__instance
-
     def __init__(self):
         super().__init__()
-
-        if DataLoader.__instance != None:
-            raise Exception("This class has already been accessed")
-        else:
-            DataLoader.__instance = self
 
         if not path.exists(config.root_results_prep):
             makedirs(config.root_results_prep)

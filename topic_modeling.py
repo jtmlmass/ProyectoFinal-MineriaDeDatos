@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 import smart_open
 
 print("Starting data loading")
-data_loader = DataLoader().get_instance()
+data_loader = DataLoader()
 print("Finishied data loading")
 
 

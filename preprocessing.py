@@ -14,7 +14,7 @@ nltk.download("punkt")
 nltk.download("stopwords")
 
 print("Starting Preprocesing")
-data_loader = DataLoader().get_instance()
+data_loader = DataLoader()
 
 # Count to say which number of paper it"s being pre processed
 count = 1

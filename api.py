@@ -24,7 +24,7 @@ def home():
 # A route to return all of the available entries in our catalog.
 @app.route('/api/topics/all', methods=['GET'])
 def api_topics_all():
-    return jsonify(topics)
+    return jsonify({'data': topics})
 
 
 @app.route('/api/papers/all', methods=['GET'])

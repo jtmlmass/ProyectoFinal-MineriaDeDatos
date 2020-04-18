@@ -50,14 +50,14 @@ def loadModel(is_display=False, number_words=1):
 
     topics = lda.print_topics(num_words=number_words)
 
-    dic_topics = {}
+    dic_topics = []
     for topic in topics:
         split_topic = topic[1].split("*\"")
         #split_topic[1] = split_topic.replace("\"", "")
         print("-" + str(split_topic))
-        dic_topics[str(topic[0])] = {"topic": split_topic[1][:len(split_topic[1])-1],
+        dic_topics.append({"topic": split_topic[1][:len(split_topic[1])-1],
                                      "frecuency": split_topic[0]
-                                     }
+                                     })
         print(topic)
     print(str(dic_topics))
 

@@ -2,9 +2,11 @@ import flask
 from flask import request, jsonify
 import topic_modeling as tm
 from data_loading import DataLoader
+from flask_cors import CORS
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+CORS(app)
 
 
 # Load needed data
@@ -32,4 +34,4 @@ def api_papers_all():
     return jsonify(processed_papers)
 
 
-app.run()
+app.run(host='0.0.0.0', port=80)

@@ -45,6 +45,15 @@ class DataLoader:
         print("Finished Loading")
         return papers
 
+    def get_original_papers_dic(self):
+        papers = {}
+        print("Loading original Papers...")
+        for file in self.files:
+            paper = json.load(load_file(config.root_path, file))
+            papers[paper["paper_id"]] = paper
+        print("Finished Loading")
+        return papers
+
     def get_processed_papers(self):
         papers = []
         print("Loading processed Papers...")

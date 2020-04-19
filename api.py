@@ -14,7 +14,7 @@ topics = tm.load_model()
 print("Starting data loading")
 data_loader = DataLoader()
 print("Finishied data loading")
-processed_papers = data_loader.get_original_papers()
+original_papers = data_loader.get_original_papers_dic()
 
 
 @app.route('/', methods=['GET'])
@@ -31,7 +31,21 @@ def api_topics_all():
 
 @app.route('/api/papers/all', methods=['GET'])
 def api_papers_all():
-    return jsonify(processed_papers)
+    return jsonify(original_papers)
+
+
+@app.route('/api/papers/<paper_id>', methods=['GET'])
+def api_paper_id(paper_id):
+
+    # Check if an ID was provided as part of the URL.
+    # If ID is provided, assign it to a variable.
+    # If no ID is provided, display an error in the browser.
+    # For trial: /api/papers/00a00d0edc750db4a0c299dd1ec0c6871f5a4f24
+    try:
+        paper = original_papers[paper_id]
+    except KeyError:
+        return "Error: Paper not found. "
+    return jsonify(paper)
 
 
 app.run(host='0.0.0.0', port=80)

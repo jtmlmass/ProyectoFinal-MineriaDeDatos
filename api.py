@@ -47,4 +47,5 @@ def api_paper_id(paper_id):
     return jsonify(paper)
 
 
-app.run(host='0.0.0.0', port=80)
+# host='0.0.0.0', port=80
+app.run()

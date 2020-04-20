@@ -29,9 +29,19 @@ def get_corpus_topics(lda, dictionary, corpus, dic_topics):
         document_topics = lda.get_document_topics(
             bow=bow)
         for topic in document_topics:
-            if topic[1] <= 0.2:
+            if float(topic[1]) <= 0.2:
                 topic_id = topic[0]
-                dic_topics[topic_id]['papers'].append(tokens['paper_id'])
+                if tokens['title'] == "" and tokens['abstract'] != "":
+                    topic_paper_appearance = {
+                        'paper_id': tokens['paper_id'], 'title': tokens['abstract'], 'frecuencia': str(topic[1])}
+                elif tokens['abstract'] == "" and tokens['title'] != "":
+                    topic_paper_appearance = {
+                        'paper_id': tokens['paper_id'], 'title': tokens['title'], 'frecuencia': str(topic[1])}
+                else:
+                    topic_paper_appearance = {
+                        'paper_id': tokens['paper_id'], 'title': "", 'frecuencia': str(topic[1])}
+
+                dic_topics[topic_id]['papers'].append(topic_paper_appearance)
 
         topic_paper.append(
             {'paper_id': tokens['paper_id'], 'topics': document_topics})

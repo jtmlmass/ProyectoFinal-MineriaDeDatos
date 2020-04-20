@@ -7,10 +7,6 @@ from flask_cors import CORS
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
-<<<<<<< HEAD
-=======
-
->>>>>>> 5963dfa285b30867897064989e08eb9c5fed427a
 
 # Load needed data
 topics = tm.load_model()

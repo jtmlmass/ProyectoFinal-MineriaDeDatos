@@ -29,8 +29,9 @@ def get_corpus_topics(lda, dictionary, corpus, dic_topics):
         document_topics = lda.get_document_topics(
             bow=bow)
         for topic in document_topics:
-            topic_id = topic[0]
-            dic_topics[topic_id]['papers'].append(tokens['paper_id'])
+            if topic[1] <= 0.2:
+                topic_id = topic[0]
+                dic_topics[topic_id]['papers'].append(tokens['paper_id'])
 
         topic_paper.append(
             {'paper_id': tokens['paper_id'], 'topics': document_topics})
@@ -83,7 +84,8 @@ def loadModel(is_display=False, number_words=1):
                            "papers": []
                            })
 
-    papers_topics, docs_topics = get_corpus_topics(lda, dictionary, corpus, dic_topics)
+    papers_topics, docs_topics = get_corpus_topics(
+        lda, dictionary, corpus, dic_topics)
 
     if is_display is True:
         # pyLDAvis.enable_notebook()

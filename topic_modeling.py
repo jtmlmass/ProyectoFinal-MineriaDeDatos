@@ -13,8 +13,33 @@ data_loader = DataLoader()
 print("Finishied data loading")
 
 
+def get_corpus_topics(lda, dictionary, corpus, dic_topics):
+    dict_result = {}
+    data = data_loader.get_processed_papers()
+
+    topic_paper = []
+
+    for tokens in data:
+        text_data = []
+        for token in tokens['body_text']:
+            for tok in token:
+                text_data.append(tok)
+
+        bow = dictionary.doc2bow(text_data)
+        document_topics = lda.get_document_topics(
+            bow=bow)
+        for topic in document_topics:
+            topic_id = topic[0]
+            dic_topics[topic_id]['papers'].append(tokens['paper_id'])
+
+        topic_paper.append(
+            {'paper_id': tokens['paper_id'], 'topics': document_topics})
+
+    #dic_paper_topic = {}
+    return topic_paper, dic_topics
+
+
 def training_model(number_topics=10, number_words=1):
-    print("Get Files")
     data = data_loader.get_processed_papers()
 
     data = pd.DataFrame(
@@ -49,17 +74,16 @@ def loadModel(is_display=False, number_words=1):
     lda = models.LdaModel.load('model5.gensim')
 
     topics = lda.print_topics(num_words=number_words)
-
     dic_topics = []
     for topic in topics:
         split_topic = topic[1].split("*\"")
-        #split_topic[1] = split_topic.replace("\"", "")
         print("-" + str(split_topic))
         dic_topics.append({"topic": split_topic[1][:len(split_topic[1])-1],
-                                     "frecuency": split_topic[0]
-                                     })
-        print(topic)
-    print(str(dic_topics))
+                           "frecuency": split_topic[0],
+                           "papers": []
+                           })
+
+    papers_topics, docs_topics = get_corpus_topics(lda, dictionary, corpus, dic_topics)
 
     if is_display is True:
         # pyLDAvis.enable_notebook()
@@ -68,7 +92,7 @@ def loadModel(is_display=False, number_words=1):
         print("Load")
         pyLDAvis.save_html(lda_display, 'display.html')
 
-    return dic_topics
+    return docs_topics
 
 
 # # Code to retrain the model

@@ -50,7 +50,7 @@ def get_corpus_topics(lda, dictionary, corpus, dic_topics):
     return topic_paper, dic_topics
 
 
-def training_model(number_topics=10, number_words=1):
+def training_model(number_topics=50, number_words=1):
     data = data_loader.get_processed_papers()
 
     data = pd.DataFrame(
@@ -100,24 +100,26 @@ def loadModel(is_display=False, number_words=1):
     if is_display is True:
         # pyLDAvis.enable_notebook()
         lda_display = pyLDAvis.gensim.prepare(
-            lda, corpus, dictionary, sort=False)
+            lda, corpus, dictionary)
         print("Load")
         pyLDAvis.save_html(lda_display, 'display.html')
 
     return docs_topics
 
 
-# # Code to retrain the model
-# start = time.time()
-# local_time_start = time.ctime(start)
-# print("Starting Training Model at " + str(local_time_start))
-# training_model(number_topics=20)
-# end = time.time()
-# total_time = end - start
-# local_time_end = time.ctime(end)
-# print("Finished Tranining Model at " + str(local_time_end))
-# format_total_time = time.strftime('%H:%M:%S', time.gmtime(total_time))
-# print("Total Topic Modeling time: " + str(format_total_time) + " seconds")
+def train_model():
+    # # Code to retrain the model
+    start = time.time()
+    local_time_start = time.ctime(start)
+    print("Starting Training Model at " + str(local_time_start))
+    training_model(number_topics=20)
+    end = time.time()
+    total_time = end - start
+    local_time_end = time.ctime(end)
+    print("Finished Tranining Model at " + str(local_time_end))
+    format_total_time = time.strftime('%H:%M:%S', time.gmtime(total_time))
+    print("Total Topic Modeling time: " + str(format_total_time) + " seconds")
+
 
 def load_model():
     # Code to load the pass model
@@ -126,7 +128,7 @@ def load_model():
     print("Starting Loading at " + str(local_time_start))
     number_words = 1
     print(" - Number of words for topics loaded is: " + str(number_words))
-    topics = loadModel(is_display=False, number_words=number_words)
+    topics = loadModel(is_display=True, number_words=number_words)
     end = time.time()
     total_time = end - start
     local_time_end = time.ctime(end)
@@ -138,4 +140,4 @@ def load_model():
     return topics
 
 
-load_model()
+train_model()

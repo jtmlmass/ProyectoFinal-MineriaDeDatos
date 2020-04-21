@@ -48,4 +48,4 @@ def api_paper_id(paper_id):
 
 
 # host='0.0.0.0', port=80
-app.run(host='0.0.0.0', port=80)
+app.run()

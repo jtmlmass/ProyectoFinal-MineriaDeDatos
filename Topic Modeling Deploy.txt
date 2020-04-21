@@ -1,0 +1,8 @@
+Este es el link para el proyecto de de Mineria de Datos de Topic Modeling hecho por:
+
+1. Juan D. López
+2. David de la Hoz
+3. José T. Molina
+
+Se encuentra en la siguiente dirección:
+http://daviddelahoz.com/covid.html#
